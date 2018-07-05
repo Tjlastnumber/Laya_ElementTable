@@ -33,9 +33,10 @@ class SceneScript extends Laya.Script {
         //创建碰撞信息
         this.rayCastHit = new Laya.RaycastHit();
         //鼠标点击事件回调
-        Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
-        Laya.stage.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
-        Laya.stage.on(Laya.Event.MOUSE_OUT, this, this.onMouseUp);
+        // Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
+        Laya.stage.on(Laya.Event.CLICK, this, this.onMouseDown);
+        // Laya.stage.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
+        // Laya.stage.on(Laya.Event.MOUSE_OUT, this, this.onMouseUp);
     }
 
     public _update(state: Laya.RenderState): void {
@@ -52,7 +53,7 @@ class SceneScript extends Laya.Script {
         }
         //画参考线
         //根据鼠标屏幕2D座标修改生成射线数据 
-        //            camera.viewportPointToRay(new Laya.Vector2(Laya.stage.mouseX,Laya.stage.mouseY),ray);
+        // this.camera.viewportPointToRay(new Laya.Vector2(Laya.stage.mouseX,Laya.stage.mouseY),ray);
         this.camera.viewportPointToRay(new Laya.Vector2(Laya.MouseManager.instance.mouseX, Laya.MouseManager.instance.mouseY), this.ray);
         //射线检测，最近物体碰撞器信息，最大检测距离为300米，默认检测第0层
         Laya.Physics.rayCast(this.ray, this.rayCastHit, 300);
@@ -61,7 +62,7 @@ class SceneScript extends Laya.Script {
             0, this.camera.position.z);
         //开始绘制矢量3D精灵，类型为线型
         this.phasorSprite3D.begin(Laya.WebGLContext.LINES, this.camera);
-        //根据射线的原点绘制参考直线（为了观察方便而绘制，但矢量线并不是射线真正的路径）
+        // 根据射线的原点绘制参考直线（为了观察方便而绘制，但矢量线并不是射线真正的路径）
         // this.phasorSprite3D.line(this.ray.origin, new Laya.Vector4(1, 0, 0, 1),
         //     position, new Laya.Vector4(1, 0, 0, 1));
         //如果与物品相交,画三面边线
