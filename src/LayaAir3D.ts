@@ -80,14 +80,18 @@ class LayaAir3D {
         this._sceneScript = this._scene.addScript(SceneScript) as SceneScript;
         this._sceneScript.camera = this._camera;
 
+        this._setGameOver(10);
+    }
+
+    private _setGameOver(endTime: number):void {
+        this._Label_Time.text = endTime.toString();
         // 设置游戏结束倒计时
-        this._Label_Time.text = "3";
         Laya.timer.loop(1000, this, () => {
             var time = Number(this._Label_Time.text);
             if (time <= 0) return;
             this._Label_Time.text = (--time).toString();
         })
-        Laya.timer.once(3 * 1000, this, () => {
+        Laya.timer.once(endTime * 1000, this, () => {
             var gameOverUI: uiExtend.GameOverUIExtend = new uiExtend.GameOverUIExtend();
             gameOverUI.show();
         })
