@@ -70,7 +70,7 @@ class CardManager {
         // 克隆原始卡片 
         this._cloneCard(0, _card, this._scene);
         // 批量绑定卡片选中事件
-        this._bindingSelectedEvent();
+        this.bindingComponent();
         // 触发卡片资源加载完成事件
         this._eventDispatcher.event(this.CARD_COMPLETED);
     }
@@ -85,7 +85,7 @@ class CardManager {
         this._cloneCard(index, card, this._scene);
     }
 
-    private _bindingSelectedEvent() {
+    public bindingComponent() {
         var randomCardResource = Util.getArrayElement(this.CARD_RESOURCE, this.CARD_RESOURCE.length);
         this._cards.forEach((card, index, arr) => {
             var cardResource = randomCardResource[index];
@@ -137,5 +137,11 @@ class CardManager {
     public scoreEvent(handler: Handler) {
         // 注册计分事件
         this._eventDispatcher.on(this.SCORE, handler.caller, handler.method);
+    }
+
+    public removeAllComponent():void {
+        this._cards.forEach(card => {
+            card.removeComponentByType(CardScript);
+        })
     }
 }
