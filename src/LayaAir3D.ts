@@ -1,6 +1,6 @@
 // 程序入口
 class LayaAir3D {
-    SCENE_MODEL: string = "LayaScene_TableScene/TableScene.ls";
+    SCENE_MODEL: string = "LayaScene_Table/Table.ls";
     CARD_MODEL: string = "LayaScene_CardModel/CardModel.lh";
     CARD_MESH: string = "LayaScene_CardModel/Assets/Card/Models/Card-mesh.lm";
     UI: Array<String> = [
@@ -52,6 +52,12 @@ class LayaAir3D {
             .create(Laya.Handler.create(this, this.CardCreateCompleted))
             .scoreEvent(Laya.Handler.create(this, this.setScore));
 
+        //创建方向光
+        var light:Laya.DirectionLight = this._scene.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
+        //移动灯光位置
+        light.transform.translate(this._camera.transform.position);
+        //设置灯光方向
+        light.direction = this._camera.transform.forward;
 
         this._progressBarUI.removeSelf();
     }

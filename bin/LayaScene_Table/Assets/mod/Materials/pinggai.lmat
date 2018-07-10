@@ -1,13 +1,13 @@
 {
 	"version":"LAYAMATERIAL:01",
 	"props":{
-		"name":"mod-boli",
+		"name":"pinggai",
 		"cull":2,
 		"blend":0,
 		"srcBlend":1,
 		"dstBlend":0,
-		"alphaTest":true,
-		"alphaTestValue":1,
+		"alphaTest":false,
+		"alphaTestValue":0.5,
 		"depthWrite":true,
 		"depthTest":513,
 		"renderQueue":1,
@@ -36,10 +36,10 @@
 			{
 				"name":"albedoColor",
 				"value":[
-					0.4100659,
-					0.8456147,
-					0.8962264,
-					0.02745098
+					0.02745098,
+					0.01176471,
+					0.003921569,
+					1
 				]
 			}
 		],
